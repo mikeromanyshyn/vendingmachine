@@ -1,4 +1,4 @@
-package snackVendingMachine;
+package src;
 
 import java.util.InputMismatchException;
 import java.io.IOException;
