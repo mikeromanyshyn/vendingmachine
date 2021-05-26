@@ -252,7 +252,7 @@ public class VendingMachine {
             int purchasedItemQuantity = 0;
 
             for (LocalDate purchase: snack.getPurchases()) {
-                if (startDate.isBefore(endDate)) {
+                if (isDateInRange(purchase, startDate, endDate)) {
                     purchasedItemQuantity += 1;
                 }
             }
