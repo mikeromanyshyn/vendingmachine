@@ -12,20 +12,22 @@ import java.util.*;
 
 public class VendingMachine {
 
+    private static String inputCategoryName;
+    private static String inputPurchaseDate;
+    private static double inputCategoryPrice;
+    private static int inputItemQuantity;
+
     public static ArrayList<Snack> snacks = new ArrayList<>();
     private static DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
-
-
-    //ADDING NEW CATEGORY OF SNACKS
     public static void addCategory(String categoryName, double itemPrice, int itemQuantity) {
         var newSnack = new Snack(categoryName, itemPrice, itemQuantity);
 
         if (snacks.isEmpty()) {
             snacks.add(newSnack);
             System.out.println("New Category \"" + newSnack.getCategoryName() + "\" was added:");
-            System.out.println(newSnack.getCategoryName() + " "
-                    + decimalFormat.format(newSnack.getItemPrice()) + " " + newSnack.getItemQuantity());
+            System.out.println(newSnack.getCategoryName() + " " + decimalFormat.format(newSnack.getItemPrice()) + " "
+                    + newSnack.getItemQuantity());
             System.out.println();
             return;
         }
@@ -77,7 +79,7 @@ public class VendingMachine {
         }
     }
 
-    //ADDING SOME AMOUNT (QUANTITY) OF ITEMS (SNACKS)
+    //ADDING SOME AMOUNT OF ITEMS
     public static void addItem(String categoryName, int itemQuantity) {
         Snack snackByCategory = findSnackByCategory(categoryName);
         int sumQuantity;
@@ -105,7 +107,7 @@ public class VendingMachine {
         }
     }
 
-    //PURCHASING A SINGLE SNACK ITEM (DECREASING QUANTITY)
+    //PURCHASING A SINGLE SNACK ITEM
     public static void purchase(String categoryName, String purchaseDateString) {
         if (snacks.isEmpty()) {
             System.out.println("There are no Items to purchase at the moment.");
@@ -285,4 +287,35 @@ public class VendingMachine {
         return dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate);
     }
 
+    public static String getInputCategoryName() {
+        return inputCategoryName;
+    }
+
+    public void setInputCategoryName(String inputCategoryName) {
+       inputCategoryName = this.inputCategoryName;
+    }
+
+    public static double getInputCategoryPrice() {
+        return inputCategoryPrice;
+    }
+
+    public static void setInputCategoryPrice(double inputCategoryPrice) {
+        inputCategoryPrice = this.inputCategoryPrice;
+    }
+
+    public static int getInputItemQuantity() {
+        return inputItemQuantity;
+    }
+
+    public static void setInputItemQuantity(int inputItemQuantity) {
+        inputItemQuantity = inputItemQuantity;
+    }
+
+    public static String getInputPurchaseDate() {
+        return inputPurchaseDate;
+    }
+
+    public static void setInputPurchaseDate(String inputPurchaseDate) {
+        inputPurchaseDate = inputPurchaseDate;
+    }
 }

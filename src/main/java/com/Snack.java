@@ -53,4 +53,3 @@ public class Snack {
         this.purchases.add(purchaseDate);
     }
 }
-

@@ -5,43 +5,45 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.lang.*;
 
-public class VendingApplication {
-    public static String getInputCategoryName() {
-        return inputCategoryName;
-    }
+import static src.VendingMachine.*;
 
-    public static void setInputCategoryName(String inputCategoryName) {
-        VendingApplication.inputCategoryName = inputCategoryName;
-    }
-
-    public static double getInputCategoryPrice() {
-        return inputCategoryPrice;
-    }
-
-    public static void setInputCategoryPrice(double inputCategoryPrice) {
-        VendingApplication.inputCategoryPrice = inputCategoryPrice;
-    }
-
-    public static int getInputItemQuantity() {
-        return inputItemQuantity;
-    }
-
-    public static void setInputItemQuantity(int inputItemQuantity) {
-        VendingApplication.inputItemQuantity = inputItemQuantity;
-    }
-
-    public static String getInputPurchaseDate() {
-        return inputPurchaseDate;
-    }
-
-    public static void setInputPurchaseDate(String inputPurchaseDate) {
-        VendingApplication.inputPurchaseDate = inputPurchaseDate;
-    }
-
-    static String inputCategoryName;
-    static String inputPurchaseDate;
-    static double inputCategoryPrice;
-    static int inputItemQuantity;
+public class Application {
+//    public static String getInputCategoryName() {
+//        return inputCategoryName;
+//    }
+//
+//    public static void setInputCategoryName(String inputCategoryName) {
+//        Application.inputCategoryName = inputCategoryName;
+//    }
+//
+//    public static double getInputCategoryPrice() {
+//        return inputCategoryPrice;
+//    }
+//
+//    public static void setInputCategoryPrice(double inputCategoryPrice) {
+//        Application.inputCategoryPrice = inputCategoryPrice;
+//    }
+//
+//    public static int getInputItemQuantity() {
+//        return inputItemQuantity;
+//    }
+//
+//    public static void setInputItemQuantity(int inputItemQuantity) {
+//        Application.inputItemQuantity = inputItemQuantity;
+//    }
+//
+//    public static String getInputPurchaseDate() {
+//        return inputPurchaseDate;
+//    }
+//
+//    public static void setInputPurchaseDate(String inputPurchaseDate) {
+//        Application.inputPurchaseDate = inputPurchaseDate;
+//    }
+//
+//    static String inputCategoryName;
+//    static String inputPurchaseDate;
+//    static double inputCategoryPrice;
+//    static int inputItemQuantity;
 
 
 
@@ -98,10 +100,8 @@ public class VendingApplication {
             System.out.println("0 - exit Vending Machine");
             System.out.println();
 
-            //USER'S CHOICE
             System.out.print("Choose the option: ");
             System.out.println();
-
 
             try {
                 userChoice = key.nextInt();
@@ -148,9 +148,9 @@ public class VendingApplication {
                         System.out.println("Quantity of the items must be higher then \"0\".");
                         System.out.println("Enter the right quantity.");
                     } else if (getInputItemQuantity() == 0) {
-                        VendingMachine.addCategory(getInputCategoryName(), getInputCategoryPrice());
+                        addCategory(getInputCategoryName(), getInputCategoryPrice());
                     } else {
-                        VendingMachine.addCategory(getInputCategoryName(), getInputCategoryPrice(), getInputItemQuantity());
+                        addCategory(getInputCategoryName(), getInputCategoryPrice(), getInputItemQuantity());
                     }
                 }
                 case 2 -> {
@@ -174,7 +174,7 @@ public class VendingApplication {
                     } else if (getInputItemQuantity() < 0) {
                         System.out.println("For adding items you must enter a positive number.");
                     } else {
-                        VendingMachine.addItem(getInputCategoryName(), getInputItemQuantity());
+                        addItem(getInputCategoryName(), getInputItemQuantity());
                     }
 
                     System.out.println();
@@ -190,7 +190,7 @@ public class VendingApplication {
 
                     setInputPurchaseDate(console.nextLine());
 
-                    VendingMachine.purchase(getInputCategoryName(), getInputPurchaseDate());
+                    purchase(getInputCategoryName(), getInputPurchaseDate());
 
                     System.out.println();
                 }
@@ -198,12 +198,12 @@ public class VendingApplication {
                     System.out.println(">> Showing the list of served Categories");
                     System.out.println("   in Vending Machine:");
 
-                    VendingMachine.list();
+                    list();
 
                     System.out.println();
                 }
                 case 5 -> {
-                    VendingMachine.clear();
+                    clear();
 
                     System.out.println(">> Serving of all Snack Categories that");
                     System.out.println("   don’t have items for sale has been stopped.");
@@ -218,7 +218,7 @@ public class VendingApplication {
 
                     System.out.println(">> Showing earnings and total price in " + getInputPurchaseDate() + ".");
 
-                    VendingMachine.reportMonth(getInputPurchaseDate());
+                    reportMonth(getInputPurchaseDate());
 
                     System.out.println();
                 }
@@ -233,7 +233,7 @@ public class VendingApplication {
                     System.out.println(">> Showing earnings gained since " + getInputPurchaseDate());
                     System.out.println("   till now with total price.");
 
-                    VendingMachine.reportFromDate(getInputPurchaseDate());
+                    reportFromDate(getInputPurchaseDate());
 
                     System.out.println();
                 }
