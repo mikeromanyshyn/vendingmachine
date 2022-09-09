@@ -1,53 +1,14 @@
-package src;
+package com;
 
-import java.util.InputMismatchException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.lang.*;
 
-import static src.VendingMachine.*;
+import static com.VendingMachine.*;
 
 public class Application {
-//    public static String getInputCategoryName() {
-//        return inputCategoryName;
-//    }
-//
-//    public static void setInputCategoryName(String inputCategoryName) {
-//        Application.inputCategoryName = inputCategoryName;
-//    }
-//
-//    public static double getInputCategoryPrice() {
-//        return inputCategoryPrice;
-//    }
-//
-//    public static void setInputCategoryPrice(double inputCategoryPrice) {
-//        Application.inputCategoryPrice = inputCategoryPrice;
-//    }
-//
-//    public static int getInputItemQuantity() {
-//        return inputItemQuantity;
-//    }
-//
-//    public static void setInputItemQuantity(int inputItemQuantity) {
-//        Application.inputItemQuantity = inputItemQuantity;
-//    }
-//
-//    public static String getInputPurchaseDate() {
-//        return inputPurchaseDate;
-//    }
-//
-//    public static void setInputPurchaseDate(String inputPurchaseDate) {
-//        Application.inputPurchaseDate = inputPurchaseDate;
-//    }
-//
-//    static String inputCategoryName;
-//    static String inputPurchaseDate;
-//    static double inputCategoryPrice;
-//    static int inputItemQuantity;
-
-
-
     public static void main(String[] args) throws InterruptedException, IOException {
+        var vendingMachine = new VendingMachine();
 
         //WELCOME TEXT
         System.out.println();
@@ -117,18 +78,18 @@ public class Application {
                     System.out.println(">> Enter the Category Name... (ex. \"Chocolate bar\", \"Donut\")");
 
                     Scanner console = new Scanner(System.in);
-                    setInputCategoryName(console.nextLine());
+                    vendingMachine.setInputCategoryName(console.nextLine());
 
                     System.out.println(">> Enter the Category price... (ex. \"23.75\", \"12.2\", \"15\")");
 
                     try {
-                        setInputCategoryPrice(console.nextDouble());
+                        vendingMachine.setInputCategoryPrice(console.nextDouble());
                     } catch (InputMismatchException e) {
                         System.out.println("Incorrect value. Please try again.");
                         break;
                     }
 
-                    if (getInputCategoryPrice() <= 0) {
+                    if (vendingMachine.getInputCategoryPrice() <= 0) {
                         System.out.println("The price must be higher then \"0\".");
                         System.out.println("Enter the right price.");
                         break;
@@ -138,19 +99,20 @@ public class Application {
                     System.out.println(">> You may enter \"0\" if you don't want to specify the item quantity.");
 
                     try {
-                        setInputItemQuantity(console.nextInt());
+                        vendingMachine.setInputItemQuantity(console.nextInt());
                     } catch (InputMismatchException e) {
                         System.out.println("Incorrect value. Please try again.");
                         break;
                     }
 
-                    if (getInputItemQuantity() < 0) {
+                    if (vendingMachine.getInputItemQuantity() < 0) {
                         System.out.println("Quantity of the items must be higher then \"0\".");
                         System.out.println("Enter the right quantity.");
-                    } else if (getInputItemQuantity() == 0) {
-                        addCategory(getInputCategoryName(), getInputCategoryPrice());
+                    } else if (vendingMachine.getInputItemQuantity() == 0) {
+                        addCategory(vendingMachine.getInputCategoryName(), vendingMachine.getInputCategoryPrice());
                     } else {
-                        addCategory(getInputCategoryName(), getInputCategoryPrice(), getInputItemQuantity());
+                        addCategory(vendingMachine.getInputCategoryName(), vendingMachine.getInputCategoryPrice(),
+                                vendingMachine.getInputItemQuantity());
                     }
                 }
                 case 2 -> {
@@ -158,23 +120,23 @@ public class Application {
                     System.out.println(">> Enter the Category Name... (ex. \"Chocolate bar\", \"Donut\")");
 
                     Scanner console = new Scanner(System.in);
-                    setInputCategoryName(console.nextLine());
+                    vendingMachine.setInputCategoryName(console.nextLine());
 
                     System.out.println(">> Enter the number of items you want to add... ");
 
                     try {
-                        setInputItemQuantity(console.nextInt());
+                        vendingMachine.setInputItemQuantity(console.nextInt());
                     } catch (InputMismatchException e) {
                         System.out.println("Incorrect value. Please try again.");
                         break;
                     }
 
-                    if (getInputItemQuantity() == 0) {
+                    if (vendingMachine.getInputItemQuantity() == 0) {
                         System.out.println("Quantity of adding items must be higher then \"0\".");
-                    } else if (getInputItemQuantity() < 0) {
+                    } else if (vendingMachine.getInputItemQuantity() < 0) {
                         System.out.println("For adding items you must enter a positive number.");
                     } else {
-                        addItem(getInputCategoryName(), getInputItemQuantity());
+                        addItem(vendingMachine.getInputCategoryName(), vendingMachine.getInputItemQuantity());
                     }
 
                     System.out.println();
@@ -184,13 +146,13 @@ public class Application {
                     System.out.println(">> Enter the Category Name... (ex. \"Chocolate bar\", \"Donut\")");
 
                     Scanner console = new Scanner(System.in);
-                    setInputCategoryName(console.nextLine());
+                    vendingMachine.setInputCategoryName(console.nextLine());
 
                     System.out.println(">> Enter the date of purchase in format \"yyyy-MM-dd\"... (ex. 2017-12-01)");
 
-                    setInputPurchaseDate(console.nextLine());
+                    vendingMachine.setInputPurchaseDate(console.nextLine());
 
-                    purchase(getInputCategoryName(), getInputPurchaseDate());
+                    purchase(vendingMachine.getInputCategoryName(), vendingMachine.getInputPurchaseDate());
 
                     System.out.println();
                 }
@@ -214,11 +176,11 @@ public class Application {
                     System.out.println(">> Enter the Month oh the Year in format \"yyyy-MM\"... (ex. 2020-04)");
 
                     Scanner console = new Scanner(System.in);
-                    setInputPurchaseDate(console.nextLine());
+                    vendingMachine.setInputPurchaseDate(console.nextLine());
 
-                    System.out.println(">> Showing earnings and total price in " + getInputPurchaseDate() + ".");
+                    System.out.println(">> Showing earnings and total price in " + vendingMachine.getInputPurchaseDate() + ".");
 
-                    reportMonth(getInputPurchaseDate());
+                    reportMonth(vendingMachine.getInputPurchaseDate());
 
                     System.out.println();
                 }
@@ -228,12 +190,12 @@ public class Application {
                     System.out.println(">> Enter the provided date in format \"yyyy-MM-dd\"... (ex. 2020-04-07)");
 
                     Scanner console = new Scanner(System.in);
-                    setInputPurchaseDate(console.nextLine());
+                    vendingMachine.setInputPurchaseDate(console.nextLine());
 
-                    System.out.println(">> Showing earnings gained since " + getInputPurchaseDate());
+                    System.out.println(">> Showing earnings gained since " + vendingMachine.getInputPurchaseDate());
                     System.out.println("   till now with total price.");
 
-                    reportFromDate(getInputPurchaseDate());
+                    reportFromDate(vendingMachine.getInputPurchaseDate());
 
                     System.out.println();
                 }

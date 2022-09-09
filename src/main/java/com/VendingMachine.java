@@ -1,4 +1,7 @@
-package src;
+package com;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -9,13 +12,14 @@ import java.time.temporal.ChronoField;
 import java.time.LocalDate;
 import java.util.*;
 
-
+@Getter
+@Setter
 public class VendingMachine {
 
-    private static String inputCategoryName;
-    private static String inputPurchaseDate;
-    private static double inputCategoryPrice;
-    private static int inputItemQuantity;
+    private String inputCategoryName;
+    private String inputPurchaseDate;
+    private double inputCategoryPrice;
+    private int inputItemQuantity;
 
     public static ArrayList<Snack> snacks = new ArrayList<>();
     private static DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -271,8 +275,6 @@ public class VendingMachine {
         System.out.println();
     }
 
-
-
     private static Snack findSnackByCategory(String categoryName) {
         for (Snack snack: snacks) {
             if (snack.getCategoryName().equalsIgnoreCase(categoryName)) {
@@ -285,37 +287,5 @@ public class VendingMachine {
 
     private static boolean isDateInRange(LocalDate dateToCheck, LocalDate startDate, LocalDate endDate) {
         return dateToCheck.isAfter(startDate) && dateToCheck.isBefore(endDate);
-    }
-
-    public static String getInputCategoryName() {
-        return inputCategoryName;
-    }
-
-    public void setInputCategoryName(String inputCategoryName) {
-       inputCategoryName = this.inputCategoryName;
-    }
-
-    public static double getInputCategoryPrice() {
-        return inputCategoryPrice;
-    }
-
-    public static void setInputCategoryPrice(double inputCategoryPrice) {
-        inputCategoryPrice = this.inputCategoryPrice;
-    }
-
-    public static int getInputItemQuantity() {
-        return inputItemQuantity;
-    }
-
-    public static void setInputItemQuantity(int inputItemQuantity) {
-        inputItemQuantity = inputItemQuantity;
-    }
-
-    public static String getInputPurchaseDate() {
-        return inputPurchaseDate;
-    }
-
-    public static void setInputPurchaseDate(String inputPurchaseDate) {
-        inputPurchaseDate = inputPurchaseDate;
     }
 }
